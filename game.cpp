@@ -16,11 +16,14 @@ int checkUnderscore(string str){
 int main(){
     //Inicialización del srand para generar posteriormente numeros aleatorios
     srand((unsigned) time(NULL));
-    string opciones[6] = {"programar","basketball","beisbol","videojuego","espacio", "windows"};
+
+    string opciones[12] = {
+        "programar","basketball","beisbol","videojuego","espacio", "windows","electricidad","arepa"
+        };
    
     /*Se genera un numero aleatorio entre el 0 y el 6 y
      a partir de dicho indice se selecciona una opcion del array;*/
-    string opcion = opciones[rand() % 6];
+    string opcion = opciones[rand() % 9];
     
     char temp;
     int vidas = 8;
@@ -40,7 +43,6 @@ int main(){
     while(vidas > 0){
         cout << "\nVidas restantes: " << vidas << endl;
         cout << "introduce una letra: "; cin >> temp;
-
 
         int indice = opcion.find(temp);
 
