@@ -20,14 +20,13 @@ int main(){
    
     /*Se genera un numero aleatorio entre el 0 y el 6 y
      a partir de dicho indice se selecciona una opcion del array;*/
-
     string opcion = opciones[rand() % 6];
-
+    
     char temp;
     int vidas = 8;
     string display;
    
-    cout << "Bienvenido al juego del ahorcado, el juego consiste en adivinar la palabra colocando las letras correctas" << endl;
+    cout << "\nBienvenido al juego del ahorcado, el juego consiste en adivinar la palabra colocando las letras correctas" << endl;
     cout << "De lo contrario pierdes una vida, al llegar a 0 vidas pierdes el juego"<<endl;
     cout << "\nJ U G U E M O S......"<<endl;
 
@@ -35,11 +34,11 @@ int main(){
         display += "_ ";
     }
 
-
     cout << "\nAdivina la palabra: " << endl;
+    cout << "\n" + display << endl; 
 
     while(vidas > 0){
-        cout << "\nTotal de vidas: " << vidas << endl;
+        cout << "\nVidas restantes: " << vidas << endl;
         cout << "introduce una letra: "; cin >> temp;
 
 
@@ -51,7 +50,7 @@ int main(){
                 //Obtiene la cantidad de letras que se repiten
                 int totalLetras = count(opcion.begin(),opcion.end(),opcion[indice]);
                 
-                //Si la cantidad de letras repetidas es mayor que 1 se ejecuta lo de debajo
+                //Si la cantidad de letras encontradas es mayor que 1 se ejecuta lo de debajo
                 if(totalLetras > 1){
                     //cursor hace referencia a la posicion de una de la primera letra repetida en el string
                     int cursor = indice;
@@ -59,13 +58,20 @@ int main(){
                     while(totalLetras > 0){
                         //se obtiene la primera letra repetida mas cercana al indice del cursor
                         int tempIndex = opcion.find(opcion[indice],cursor);
-                        display[tempIndex * 2 ] = opcion[tempIndex];
+
+                        /*A partir del indice encontrado se muestra en el display
+                          si el indice es mayor a 0 se multiplica por 2 para que pueda 
+                          llenar los espacios correspondientes                        
+                        */
 
                         if(tempIndex > 0){
                             display[tempIndex * 2 ] = opcion[tempIndex];
                         }else{
                             display[tempIndex] = opcion[tempIndex];
                         }
+
+                        /*Se le asigna al cursor el valor de el indice encontrado y
+                         se le suma 1 para encontrar la siguiente letra repetida*/
 
                         cursor = tempIndex + 1;
                         totalLetras--;
