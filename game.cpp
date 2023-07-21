@@ -4,40 +4,46 @@
 #include <cstring>
 #include <algorithm>
 
-
-
 using namespace std;
 
 int checkUnderscore(string str){
         return !(str.find("_",0) != -1);
 }
     
-
 int main(){
     //Inicialización del srand para generar posteriormente numeros aleatorios
     srand((unsigned) time(NULL));
 
-    string opciones[12] = {
+    string opciones[8] = {
         "programar","basketball","beisbol","videojuego","espacio", "windows","electricidad","arepa"
         };
-   
+    
+    string pistas[8] = {
+        "cuando desarrollas programas....", "deporte...", "deporte", "hobbie", "fuera de la tierra....", "sistema operativo...","energia....","comida..."
+    };
+
     /*Se genera un numero aleatorio entre el 0 y el 6 y
-     a partir de dicho indice se selecciona una opcion del array;*/
-    string opcion = opciones[rand() % 9];
+     a partir de dicho indice se selecciona una opcion y una pista en sus respectivos array;*/
+
+    int randOpcion = rand() % 9;
+
+    string opcion = opciones[randOpcion];
+    string opcionPista = pistas[randOpcion];
     
     char temp;
     int vidas = 8;
     string display;
    
-    cout << "\nBienvenido al juego del ahorcado, el juego consiste en adivinar la palabra colocando las letras correctas" << endl;
+    cout << "\n Bienvenido al juego del ahorcado, el juego consiste en adivinar la palabra colocando las letras correctas"<< endl;
     cout << "De lo contrario pierdes una vida, al llegar a 0 vidas pierdes el juego"<<endl;
-    cout << "\nJ U G U E M O S......"<<endl;
+    cout << "J U G U E M O S......"<<endl;
 
     for(int i = 0; i < opcion.length(); i++){
         display += "_ ";
     }
 
     cout << "\nAdivina la palabra: " << endl;
+    cout << "pista: " << opcionPista << endl;
     cout << "\n" + display << endl; 
 
     while(vidas > 0){
@@ -87,6 +93,10 @@ int main(){
                 }
         }
         
+        system("clear");
+
+        cout << "Adivina la palabra: "<< endl;
+        cout << "pista: " << opcionPista <<"\n"<<endl;
         cout << display << endl;
 
         if(checkUnderscore(display)){
@@ -99,7 +109,7 @@ int main(){
     }else{
         cout << "\nHas perdido el juego" << endl;
     }
-    
+    cout << "Gracias por jugar" << "\n"<<endl;
     cout << "Programa terminado....." << endl;
 
     return 0;
